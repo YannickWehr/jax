@@ -246,7 +246,8 @@ def threefry_2x32(keypair, count):
   Returns:
     An array of dtype uint32 with the same shape as `count`.
   """
-  print(len(keypair))
+  if len(keypair) > 2:
+    keypair = keypair[0:1]
   key1, key2 = keypair
   if not lax.dtype(key1) == lax.dtype(key2) == lax.dtype(count) == np.uint32:
     msg = "threefry_2x32 requires uint32 arguments, got {}"
